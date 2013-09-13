@@ -6,7 +6,6 @@ class CreateTasks < ActiveRecord::Migration
     create_table :tasks do |t|
       t.string :completed, default: ' '
       t.string :text
-
       t.timestamps
     end
   end
