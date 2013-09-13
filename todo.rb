@@ -40,6 +40,11 @@ if ARGV[0] == 'complete'
   list_tasks
 end
 
+if ARGV[0] == 'uncomplete'
+  Task.update(ARGV[1],:completed => ' ')
+  list_tasks
+end
+
 
 
 list_tasks if ARGV[0] == 'list'
