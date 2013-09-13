@@ -10,4 +10,4 @@ def random_todos
   end
 end
 
-p random_todos
+random_todos
