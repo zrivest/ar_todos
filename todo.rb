@@ -1,8 +1,8 @@
 require_relative 'config/application'
 
 def list_tasks 
- Task.all.select { |task|
-   puts "[#{task.completed}] #{task.id}: #{task.text}" }
+ Task.all.each_with_index { |task, index|
+   puts "[#{task.completed}] #{index + 1}: #{task.text}" }
 end
 
 if ARGV[0] == 'add'
@@ -12,8 +12,7 @@ if ARGV[0] == 'add'
 end
 
 if ARGV[0] == 'delete'
-  task = Task.delete(ARGV[1])
-  Task.all.each_with_index { |task,index| Task.update(task.id, :id => index + 1) }
+  task = Task.all[ARGV[1].to_i - 1].destroy
   list_tasks
 end
 
