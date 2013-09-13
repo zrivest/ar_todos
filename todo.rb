@@ -8,10 +8,13 @@ end
 if ARGV[0] == 'add'
   task = Task.new(:text => ARGV[1..-1].join(' '))
   task.save
+  list_tasks
 end
 
 if ARGV[0] == 'delete'
-  Task.delete(ARGV[1])
+  task = Task.delete(ARGV[1])
+  Task.all.each_with_index { |task,index| Task.update(task.id, :id => index + 1) }
+  list_tasks
 end
 
 if ARGV[0] == 'complete'
@@ -25,3 +28,4 @@ if ARGV[0] == 'uncomplete'
 end
 
 list_tasks if ARGV[0] == 'list'
+
